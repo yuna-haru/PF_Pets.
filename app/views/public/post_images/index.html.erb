@@ -1,2 +1,35 @@
-<h1>Public::PostImages#index</h1>
-<p>Find me in app/views/public/post_images/index.html.erb</p>
+<div>
+  <div>
+    <div>
+
+      <div>
+        <h4>投稿一覧</h4>
+      </div>
+
+      <div>
+        <% @post_image.each do |post_image| %>
+
+        <div>
+          <%= link_to public_post_image_path(post_image.id) do %>
+            <%= image_tag post_image.get_image %>
+          <% end %>
+
+          <%= post_image.user.name %>
+
+          <%= link_to post_image.title, public_post_image_path(post_image.id) %>
+
+          <%=  post_image.body.truncate(20) %>
+            <% if image.body.size >= 20 %>
+              <%= link_to public_post_image_path(post_image.id) do %>
+                <p>続きを読む...</p>
+              <% end %>
+            <% end %>
+
+        </div>
+
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,2 +1,26 @@
-<h1>Public::PostImages#show</h1>
-<p>Find me in app/views/public/post_images/show.html.erb</p>
+<div>
+  <div>
+    <div>
+
+
+
+      <div>
+        <div>
+          <h3><%= @post_image.title %></h3>
+        </div>
+
+        <div>
+          <%= image_tag @post_image.get_image %>
+          <span><%= link_to @post_image.user.name %></span>
+          <span>いいね</span>
+          <span>編集する</span>
+          <span><%= @post_image.created_at.strftime('%Y/%m/%d') %></span>
+        </div>
+        <div>
+          <p><%= @post_image.body %></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

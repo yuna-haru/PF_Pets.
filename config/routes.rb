@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
     get 'about' => 'homes#about', as:'about'
     resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    patch 'users/withdraw' => 'users#withdraw'
+    post 'users/confirm' => 'users#confirm'
+    resources :users, only: [:show, :edit, :update]
   end
 
   namespace :admin do

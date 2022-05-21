@@ -9,7 +9,7 @@
       <div>
         <%= form_with model: @post_image, url: public_post_images_path, method: :post do |f| %>
 
-          <label for="file"><span>写真</span></label>
+          <label for="file"><span>画像</span></label>
           <%= f.file_field :image, accept: "image/*", id:"file" %><br>
 
           <label for="title"><span>タイトル</span></label>
