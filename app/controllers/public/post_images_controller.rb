@@ -18,10 +18,12 @@ class Public::PostImagesController < ApplicationController
 
   def index
     @post_image = PostImage.all
+    @users = User.all
   end
 
   def show
     @post_image = PostImage.find(params[:id])
+    @users = User.all
   end
 
   def edit

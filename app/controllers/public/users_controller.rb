@@ -1,11 +1,12 @@
 class Public::UsersController < ApplicationController
 
   def index
-    @user = User.all
+    @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
+    @users = User.all
     @post_images = @user.post_images
   end
 
@@ -20,9 +21,14 @@ class Public::UsersController < ApplicationController
   end
 
   def confirm
+    @user = current_user
   end
 
   def withdraw
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to public_path
   end
 
 

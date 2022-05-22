@@ -4,29 +4,9 @@
 
       <div>
 
-        <div>
-          <h4>プロフィール</h4>
-        </div>
-
-        <div>
-          <div><%= image_tag @user.get_profile_image(100,100) %></div>
-          <div><%= @user.name %></div>
-          <div><%= @user.introduction %></div>
-          <div>
-            <% if @user == current_user %>
-              <%= link_to "プロフィール編集", edit_public_user_path(@user.id) %>
-            <% end %>
-          </div>
-
-          <div>
-            <div>
-              <%= link_to "新規投稿", new_public_post_image_path %>
-            </div>
-            <div>
-              ブックマーク
-            </div>
-          </div>
-        </div>
+      <div>
+        <%= render 'profile', user: @users %>
+      </div>
 
         <div>
           <div>

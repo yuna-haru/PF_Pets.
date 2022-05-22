@@ -3,13 +3,17 @@
     <div>
 
       <div>
+        <%= render 'profile', user: @users %>
+      </div>
+
+
 
         <div>
           <h4>ユーザー一覧</h4>
         </div>
 
         <div>
-          <% @user.each do |user| %>
+          <% @users.each do |user| %>
           <div>
             <span>
               <%= link_to public_user_path(user.id) do %>
@@ -29,6 +33,6 @@
           <% end %>
         </div>
 
-      </div>
+    </div>
   </div>
 </div>

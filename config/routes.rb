@@ -15,10 +15,11 @@ Rails.application.routes.draw do
   namespace :public do
     get '/' => 'homes#top'
     get 'about' => 'homes#about', as:'about'
-    resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     patch 'users/withdraw' => 'users#withdraw'
-    post 'users/confirm' => 'users#confirm'
+    get 'users/confirm' => 'users#confirm'
+    resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update]
+    resources :comments, only: [:create]
   end
 
   namespace :admin do

@@ -27,6 +27,20 @@ class Public::SessionsController < Devise::SessionsController
     redirect_to public_path, notice: 'ゲストユーザーとしてログインしました。'
    end
 
+  def user_state
+  ## 【処理内容1】 入力されたemailからアカウントを1件取得
+     @user = User.find_by(email: params[:user][:email])
+  ## アカウントを取得できなかった場合、このメソッドを終了する
+     return if !@user
+  ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
+     if @user.valid_password?(params[:user][:password])
+    ## 【処理内容3】
+     if @user.is_deleted
+      redirect_to new_user_registration_path
+     end
+   end
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
