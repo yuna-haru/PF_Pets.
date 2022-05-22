@@ -14,13 +14,13 @@
     <header>
     <% if user_signed_in? %>
       <li>
-        マイページ
+        <%= link_to "マイページ", public_user_path(current_user.id) %>
       </li>
       <li>
-        投稿一覧
+        <%= link_to "投稿一覧", public_post_images_path %>
       </li>
       <li>
-        ユーザー一覧
+        <%= link_to "ユーザー一覧", public_users_path %>
       </li>
       <li>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>

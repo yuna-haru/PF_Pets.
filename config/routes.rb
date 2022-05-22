@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     patch 'users/withdraw' => 'users#withdraw'
     post 'users/confirm' => 'users#confirm'
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update]
   end
 
   namespace :admin do

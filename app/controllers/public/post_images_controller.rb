@@ -1,5 +1,6 @@
 class Public::PostImagesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :current_user
+
 
   def new
     @post_image = PostImage.new
@@ -7,9 +8,12 @@ class Public::PostImagesController < ApplicationController
 
   def create
     @post_image = PostImage.new(post_image_params)
-    @post_image.users_id = current_user.id
-    @post_image.save
-    redirect_to public_post_image_path(@post_image.id)
+    @post_image.user_id = current_user.id
+    if @post_image.save
+      redirect_to public_post_image_path(@post_image.id)
+    else
+      render :new
+    end
   end
 
   def index

@@ -10,8 +10,8 @@
         </div>
 
         <div>
-          <%= image_tag @post_image.get_image %>
-          <span><%= link_to @post_image.user.name %></span>
+          <div><%= image_tag @post_image.get_image(500,500) %></div>
+          <span><%= link_to @post_image.user.name, public_user_path(@post_image.user.id) %></span>
           <span>いいね</span>
           <span>編集する</span>
           <span><%= @post_image.created_at.strftime('%Y/%m/%d') %></span>
