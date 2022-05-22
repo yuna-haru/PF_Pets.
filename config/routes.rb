@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get 'users/confirm' => 'users#confirm'
     resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update]
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
   end
 
   namespace :admin do
