@@ -9,11 +9,11 @@
         </div>
 
         <div>
-          <%= image_tag @user.get_profile_image(100,100) %>
-          <%= @user.name %>
-          <%= @user.introduction %>
+          <div><%= image_tag @user.get_profile_image(100,100) %></div>
+          <div><%= @user.name %></div>
+          <div><%= @user.introduction %></div>
           <div>
-            プロフィール編集
+            <%= link_to "プロフィール編集", edit_public_user_path(@user.id) %>
           </div>
 
           <div>
