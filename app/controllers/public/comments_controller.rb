@@ -5,7 +5,7 @@ class Public::CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.post_image_id = post_image.id
     comment.save
-    redirect_to
+    redirect_to public_post_image_path(post_image.id)
   end
 
   def destroy

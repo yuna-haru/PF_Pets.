@@ -43,6 +43,16 @@ class Public::PostImagesController < ApplicationController
     redirect_to public_post_images_path
   end
 
+  def keyword
+    if params[:keyword].present?
+      @post_images = PostImage.where('body LIKE ?', "%#{params[:keyword]}%")
+      @keyword = params[:keyword]
+    else
+      @post_image = PostImage.all
+    end
+    redirect_to keyword_public_post_images_path
+  end
+
 
   private
 

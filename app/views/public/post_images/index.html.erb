@@ -20,7 +20,7 @@
             <% end %>
           <span>
 
-          <span><%= post_image.user.name %></span>
+          <span><%= link_to post_image.user.name, public_user_path(post_image.user.id) %></span>
 
           <span><%= link_to post_image.title, public_post_image_path(post_image.id) %></span>
 

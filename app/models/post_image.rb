@@ -2,6 +2,13 @@ class PostImage < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+
+  def bookmarked_by?(user)
+    bookmarks.where(user_id: user).exists?
+  end
+
+
 
   def get_image(width, height)
     unless image.attached?

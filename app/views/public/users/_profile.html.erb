@@ -22,10 +22,14 @@
             <%= link_to "新規投稿", new_public_post_image_path %>
           </div>
           <div>
-            ブックマーク
+            <%#= link_to "ブックマーク", public_post_image_bookmarks_path(@users.post_image_id) %>
           </div>
-          <% end %>
         </div>
+        <% end %>
+        <%= form_with url: keyword_public_post_images_path, method: :get do |f| %>
+          <%= f.text_field :keyword %>
+          <%= f.submit "検索" %>
+        <% end %>
       </div>
 
     </div>

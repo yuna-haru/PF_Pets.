@@ -1,0 +1,41 @@
+<div>
+  <div>
+    <div>
+
+      <div>
+        <%= render 'public/users/profile', user: @users %>
+      </div>
+
+        <div>
+          <h3>ブックマーク一覧</h3>
+        </div>
+
+        <% @bookmark.each do |bookmark| %>
+
+        <div>
+          <span>
+            <%= link_to public_post_image_path(bookmark.post_image.id) do %>
+              <%= image_tag post_image.get_image(100,100) %>
+            <% end %>
+          <span>
+
+          <span><%= link_to bookmark.post_image.title, public_post_image_path(bookmark.post_image.id) %></span>
+
+          <span>
+            <%= bookmark.post_image.body.truncate(20) %>
+              <% if bookmark.post_image.body.size >= 20 %>
+                <%= link_to public_post_image_path(bookmark.post_image.id) do %>
+                  <span>続きを読む</span>
+                <% end %>
+              <% end %>
+          </span>
+
+          <span><%= link_to @bookmark.user.name, public_user_path(@bookmark.post_image.user.id) %></span>
+
+        </div>
+
+
+
+    </div>
+  </div>
+</div>

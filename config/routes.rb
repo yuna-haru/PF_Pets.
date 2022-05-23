@@ -17,7 +17,12 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about', as:'about'
     patch 'users/withdraw' => 'users#withdraw'
     get 'users/confirm' => 'users#confirm'
-    resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resources :bookmarks, only: [:create, :index, :destroy]
+      collection do
+        get 'keyword'
+      end
+    end
     resources :users, only: [:index, :show, :edit, :update]
     resources :comments, only: [:create, :destroy]
   end
