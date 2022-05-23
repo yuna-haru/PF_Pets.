@@ -10,12 +10,12 @@
           <h3>ブックマーク一覧</h3>
         </div>
 
-        <% @bookmark.each do |bookmark| %>
+        <% @bookmarks.each do |bookmark| %>
 
         <div>
           <span>
             <%= link_to public_post_image_path(bookmark.post_image.id) do %>
-              <%= image_tag post_image.get_image(100,100) %>
+              <%= image_tag bookmark.post_image.get_image(100,100) %>
             <% end %>
           <span>
 
@@ -30,7 +30,9 @@
               <% end %>
           </span>
 
-          <span><%= link_to @bookmark.user.name, public_user_path(@bookmark.post_image.user.id) %></span>
+          <span><%= link_to bookmark.user.name, public_user_path(bookmark.user.id) %></span>
+
+          <% end %>
 
         </div>
 

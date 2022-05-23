@@ -10,18 +10,18 @@
           <h3>検索結果　"<%= @keyword %>"</h3>
         </div>
 
-        <% @post_images.each do |post_images| %>
+        <% @post_images.each do |post_image| %>
 
           <div>
             <span>
               <%= link_to public_post_image_path(post_image.id) do %>
-                <%= image_tag post_images.get_image(100,100) %>
+                <%= image_tag post_image.get_image(100,100) %>
               <% end %>
             <span>
 
-            <span><%= link_to post_images.user.name, public_user_path(post_image.user.id) %></span>
+            <span><%= link_to post_image.user.name, public_user_path(post_image.user.id) %></span>
 
-            <span><%= link_to post_images.title, public_post_image_path(post_image.id) %></span>
+            <span><%= link_to post_image.title, public_post_image_path(post_image.id) %></span>
 
             <%= post_image.body.truncate(20) %>
               <% if post_image.body.size >= 20 %>

@@ -1,5 +1,6 @@
 class Public::PostImagesController < ApplicationController
   before_action :current_user
+  before_action :login_check, only: [:new, :edit, :update, :destroy]
 
 
   def new
@@ -44,13 +45,14 @@ class Public::PostImagesController < ApplicationController
   end
 
   def keyword
+    @users = User.all
     if params[:keyword].present?
       @post_images = PostImage.where('body LIKE ?', "%#{params[:keyword]}%")
       @keyword = params[:keyword]
     else
       @post_image = PostImage.all
     end
-    redirect_to keyword_public_post_images_path
+    # redirect_to keyword_public_post_images_path
   end
 
 
@@ -58,6 +60,13 @@ class Public::PostImagesController < ApplicationController
 
   def post_image_params
     params.require(:post_image).permit(:title, :body, :image)
+  end
+
+  def login_check
+    unless user_signed_in?
+      flash[:alert] = "ログインしてください"
+      redirect_to public_post_images_path
+    end
   end
 
 end

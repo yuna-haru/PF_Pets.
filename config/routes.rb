@@ -18,13 +18,13 @@ Rails.application.routes.draw do
     patch 'users/withdraw' => 'users#withdraw'
     get 'users/confirm' => 'users#confirm'
     resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
-      resources :bookmarks, only: [:create, :index, :destroy]
+      resources :comments, only: [:create, :destroy]
       collection do
         get 'keyword'
       end
     end
     resources :users, only: [:index, :show, :edit, :update]
-    resources :comments, only: [:create, :destroy]
+    resources :bookmarks, only: [:create, :index, :destroy]
   end
 
   namespace :admin do

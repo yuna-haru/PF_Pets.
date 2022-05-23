@@ -2,9 +2,10 @@ class Public::BookmarksController < ApplicationController
   before_action :current_user
 
   def index
-    @bookmark = Bookmark.where(user_id: current_user.id)
-    @bookmark = Bookmark.post_image.all
-    @bookmark = Bookmark.user.all
+    @bookmarks = Bookmark.where(user_id: current_user.id)
+    @users = User.all
+    #@bookmark = Bookmark.post_image.all
+    #@bookmark = Bookmark.user.all
   end
 
   def create
@@ -18,7 +19,7 @@ class Public::BookmarksController < ApplicationController
   end
 
   def destroy
-    @post_image = PostImage.find(params[:post_image_id])
+    @post_image = PostImage.find(params[:id])
     bookmark = @post_image.bookmarks.find_by(user_id: current_user.id)
     if bookmark.present?
       bookmark.destroy
@@ -27,5 +28,6 @@ class Public::BookmarksController < ApplicationController
       redirect_to request.referer
     end
   end
+
 
 end
