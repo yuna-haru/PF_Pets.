@@ -4,7 +4,7 @@ class Public::BookmarksController < ApplicationController
 
   def index
     @bookmarks = Bookmark.where(user_id: current_user.id)
-    @users = User.all
+    @user = current_user
     #@bookmark = Bookmark.post_image.all
     #@bookmark = Bookmark.user.all #アソシエーションの関係があるのでこれは必要ない
   end

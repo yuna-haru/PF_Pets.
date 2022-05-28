@@ -14,7 +14,7 @@
         <div>
           <div><%= image_tag @post_image.get_image(500,500) %></div>
           <span><%= link_to @post_image.user.name, public_user_path(@post_image.user.id) %></span>
-          <% if @users == current_user %>
+          <% if signed_in? %>
             <span>
                   <% if @post_image.bookmarked_by?(current_user) %>
                     <%= link_to "ブックマークを外す", public_bookmark_path(@post_image), method: :delete %>
@@ -22,7 +22,9 @@
                     <%= link_to "ブックマークする", public_bookmarks_path(post_image_id: @post_image), method: :post %>
                   <% end %>
             </span>
-            <span><%= link_to "編集する", edit_public_post_image_path(@post_image.id) %></span>
+            <% if @users == current_user %>
+              <span><%= link_to "編集する", edit_public_post_image_path(@post_image.id) %></span>
+            <% end %>
           <% end %>
           <span><%= @post_image.created_at.strftime('%Y/%m/%d') %></span>
         </div>
@@ -39,17 +41,18 @@
         <div>
           <p>コメント：<%= @post_image.comments.count %>件</p>
             <% @post_image.comments.each do |comment| %>
-              <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-              <%= comment.user.name %>
-              <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+              <%= image_tag comment.user.get_profile_image(100,100) %>
               <%= comment.comment %><br>
+              <%= link_to comment.user.name, public_user_path(comment.user.id) %>
+              <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+
               <% if comment.user_id == current_user %>
                 <%= link_to "削除", public_post_image_comment_path(comment.post_image.id, comment.id), method: :delete %>
               <% end %>
             <% end %>
         </div>
         <div>
-          <% if @users == current_user %>
+          <% if signed_in? %>
             <%= form_with model: [@post_image, @comment], url: public_post_image_comments_path(@post_image), method: :post do |f| %>
               <%= f.text_area :comment, placeholder: "コメントをここに", size: "60×50", style: "height:80px;" %>
               <%= f.submit "送信する" %>
