@@ -16,6 +16,30 @@
           <h4>新着記事</h1>
         </div>
 
+        <div class="d-flex flex-nowrap">
+        <% @post_images.each do |post_image| %>
+
+        <div>
+          <span>
+            <%= link_to public_post_image_path(post_image.id) do %>
+              <%= image_tag post_image.get_image(100,100) %>
+            <% end %>
+          <span>
+
+          <span><%= link_to post_image.user.name, public_user_path(post_image.user.id) %></span>
+
+          <span><%= link_to post_image.title, public_post_image_path(post_image.id) %></span>
+
+          <%= post_image.body.truncate(20) %>
+            <% if post_image.body.size >= 20 %>
+              <%= link_to public_post_image_path(post_image.id) do %>
+                <span>　続きを読む</span>
+              <% end %>
+            <% end %>
+
+          <% end %>
+        </div>
+
       </did>
 
     </div>
