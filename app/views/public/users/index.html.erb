@@ -22,11 +22,15 @@
             </span>
             <span><%= link_to user.name, public_user_path(user.id) %></span>
             <span>
-              <%= user.introduction.truncate(20) %>
-              <% if user.introduction.size >= 20 %>
-                <%= link_to public_user_path(user.id) do %>
-                  <span>続きを読む</span>
-                <% end %>
+              <%#= if user.introduction.truncate(20) %>
+
+                <%= user.introduction.truncate(20) %>
+                <% if user.introduction.size >= 20 %>
+                  <%= link_to public_user_path(user.id) do %>
+                    <span>続きを読む</span>
+                  <% end %>
+                <%# end %>
+
               <% end %>
             </span>
           </div>

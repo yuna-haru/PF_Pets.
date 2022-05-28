@@ -7,7 +7,7 @@
       </div>
 
       <div>
-        <% @users.each do |user| %>
+        <%# user.each do |user| %>
         <div><%= image_tag user.get_profile_image(100,100) %></div>
         <div><%= user.name %></div>
         <div><%= user.introduction %></div>
@@ -29,7 +29,7 @@
         <%= form_with url: keyword_public_post_images_path, method: :get do |f| %>
           <%= f.text_field :keyword %>
           <%= f.submit "検索" %>
-        <% end %>
+        <%# end %>
       </div>
 
     </div>

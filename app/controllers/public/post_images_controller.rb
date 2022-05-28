@@ -19,12 +19,12 @@ class Public::PostImagesController < ApplicationController
 
   def index
     @post_image = PostImage.all
-    @users = User.all
+    @user = current_user
   end
 
   def show
     @post_image = PostImage.find(params[:id])
-    @users = User.all
+    @user = current_user
     @comment = Comment.new
   end
 
@@ -45,7 +45,7 @@ class Public::PostImagesController < ApplicationController
   end
 
   def keyword
-    @users = User.all
+    @user = current_user
     if params[:keyword].present?
       @post_images = PostImage.where('body LIKE ?', "%#{params[:keyword]}%")
       @keyword = params[:keyword]
@@ -55,7 +55,6 @@ class Public::PostImagesController < ApplicationController
   end
 
   def hashtag
-    @users = User.all
     @user = current_user
     @hashtag = Hashtag.find_by(hashtag: params[:hashtag])
     @post_imaged = @hashtag.post_images.page(params[:page]).per(20).reverse_order
