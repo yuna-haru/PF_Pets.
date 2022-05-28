@@ -54,6 +54,11 @@ class Public::PostImagesController < ApplicationController
     end
     # redirect_to keyword_public_post_images_path
   end
+  
+  def hashtag
+    @user = current_user
+    @tag = Hashtag.find_by(hashtag: params[:])
+  end
 
 
   private

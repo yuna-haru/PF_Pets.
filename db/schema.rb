@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_23_030808) do
+ActiveRecord::Schema.define(version: 2022_05_28_042042) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +69,22 @@ ActiveRecord::Schema.define(version: 2022_05_23_030808) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "hashtags", force: :cascade do |t|
+    t.string "hashtag"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hashtag"], name: "index_hashtags_on_hashtag", unique: true
+  end
+
+  create_table "post_image_hashtags", force: :cascade do |t|
+    t.integer "post_image_id_id"
+    t.integer "hashtag_id_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hashtag_id_id"], name: "index_post_image_hashtags_on_hashtag_id_id"
+    t.index ["post_image_id_id"], name: "index_post_image_hashtags_on_post_image_id_id"
+  end
+
   create_table "post_images", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -96,4 +112,6 @@ ActiveRecord::Schema.define(version: 2022_05_23_030808) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookmarks", "post_images"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "post_image_hashtags", "hashtag_ids"
+  add_foreign_key "post_image_hashtags", "post_image_ids"
 end
