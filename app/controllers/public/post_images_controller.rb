@@ -52,19 +52,20 @@ class Public::PostImagesController < ApplicationController
     else
       @post_image = PostImage.all
     end
-    # redirect_to keyword_public_post_images_path
   end
-  
+
   def hashtag
+    @users = User.all
     @user = current_user
-    @tag = Hashtag.find_by(hashtag: params[:])
+    @hashtag = Hashtag.find_by(hashtag: params[:hashtag])
+    @post_imaged = @hashtag.post_images.page(params[:page]).per(20).reverse_order
   end
 
 
   private
 
   def post_image_params
-    params.require(:post_image).permit(:title, :body, :image)
+    params.require(:post_image).permit(:title, :body, :image, :hashbody, hashtag_ids: [])
   end
 
   def login_check

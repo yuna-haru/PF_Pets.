@@ -24,16 +24,16 @@ class PostImage < ApplicationRecord
     post_image = PostImage.find_by(id: id)
     hashtags  = hashbody.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
-      tag = Hashtag.find_or_create_by(hashtag: hashtag.downcase.delete('#'))
+      tag = Hashtag.find_or_create_by(hashtag: hashtag.downcase.delete('#','＃'))
       post_image.hashtags << tag
     end
   end
   before_update do
-    post_image = PostImage.find_by(id: self.id)
+    post_image = PostImage.find_by(id: id)
     post_image.hashtags.clear
-    hashtags  = self.content.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    hashtags  = hashbody.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
-      tag = Hashtag.find_or_create_by(hashtag: hashtag.downcase.delete('#'))
+      tag = Hashtag.find_or_create_by(hashtag: hashtag.downcase.delete('#', '＃'))
       post_image.hashtags << tag
     end
   end

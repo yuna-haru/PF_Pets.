@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:index, :show, :edit, :update]
     resources :bookmarks, only: [:create, :index, :destroy]
+    get '/post_image/hashtag/:hashtag' => 'post_images#hashtag'
 
   end
 

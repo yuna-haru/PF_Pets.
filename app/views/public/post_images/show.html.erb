@@ -27,6 +27,11 @@
         <div>
           <p><%= @post_image.body %></p>
         </div>
+        <% if @post_image.hashbody %>
+          <div>
+            <%= render_with_hashtags(@post_image.hashbody) %>
+          </div>
+        <% end %>
 
         <div>
           <p>コメント：<%= @post_image.comments.count %>件</p>
