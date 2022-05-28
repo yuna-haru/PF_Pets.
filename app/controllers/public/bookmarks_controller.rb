@@ -1,11 +1,12 @@
 class Public::BookmarksController < ApplicationController
   before_action :current_user
+  before_action :login_check, only: [:index, :create, :destroy]
 
   def index
     @bookmarks = Bookmark.where(user_id: current_user.id)
     @users = User.all
     #@bookmark = Bookmark.post_image.all
-    #@bookmark = Bookmark.user.all
+    #@bookmark = Bookmark.user.all #アソシエーションの関係があるのでこれは必要ない
   end
 
   def create
@@ -26,6 +27,16 @@ class Public::BookmarksController < ApplicationController
       redirect_to request.referer
     else
       redirect_to request.referer
+    end
+  end
+
+
+  private
+
+  def login_check
+    unless user_signed_in?
+      flash[:alert] = "ログインしてください"
+      redirect_to public_users_path
     end
   end
 

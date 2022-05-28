@@ -30,13 +30,12 @@
 
         <div>
           <p>コメント：<%= @post_image.comments.count %>件</p>
-          <%# if @post_image.comments.present? %>
             <% @post_image.comments.each do |comment| %>
               <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
               <%= comment.user.name %>
               <%= comment.created_at.strftime('%Y/%m/%d') %><br>
               <%= comment.comment %><br>
-              <% if comment.user_id == current_user.id %>
+              <% if comment.user_id == current_user %>
                 <%= link_to "削除", public_post_image_comment_path(comment.post_image.id, comment.id), method: :delete %>
               <% end %>
             <% end %>
@@ -46,7 +45,6 @@
             <%= f.text_area :comment, placeholder: "コメントをここに", size: "60×50", style: "height:80px;" %>
             <%= f.submit "送信する" %>
           <% end %>
-        <%# end %>
         </div>
 
       </div>
