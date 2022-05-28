@@ -23,7 +23,7 @@ class Public::PostImagesController < ApplicationController
   end
 
   def show
-    current_user
+    @user = current_user
     @post_image = PostImage.find(params[:id])
     @user = current_user
     @comment = Comment.new

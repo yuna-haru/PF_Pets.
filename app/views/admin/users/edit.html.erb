@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-xl-11">
+
+      <div>
+        <h2><% @user.name %>さんを編集</h2>
+      </div>
+
+      <%= form_with model: @user, url: admin_user_path(@user.id) do |f| %>
+
+      <span>会員ID</span>
+      <span><%= @user.id %></span><br>
+
+      <span><label for="name">ユーザーネーム</label></span>
+      <%= f.text.field :name, id:"name"%><br>
+
+      <span><label for="email">メールアドレス</label></span>
+      <%= f.text.field :email, id:"email"%><br>
+
+      <span>会員ステータス</span>
+      <%= f.label :is_deleted, '有効', value: FALSE, for:"status" %>
+      <%= f.radio_button :is_deleted, '1', id:"status" %>
+      <%= f.label :is_deleted, '退会', value: TRUE, for:"status_f" %>
+      <%= f.radio_button :is_deleted, '0', id:"status_f" %><br>
+
+      <span><%= f.submit '変更を保存' %></span>
+
+      <% end %>
+
+      </div>
+  </div>
+</div>
