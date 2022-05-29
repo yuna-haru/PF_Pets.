@@ -22,12 +22,14 @@
         </div>
 
         <div>
-          <div>
-            <%= link_to "新規投稿", new_public_post_image_path %>
-          </div>
-          <div>
-            <%= link_to "ブックマーク", public_bookmarks_path %>
-          </div>
+          <% if user_signed_in? %>
+            <div>
+              <%= link_to "新規投稿", new_public_post_image_path %>
+            </div>
+            <div>
+              <%= link_to "ブックマーク", public_bookmarks_path %>
+            </div>
+          <% end %>
         </div>
 
         <%= form_with url: keyword_public_post_images_path, method: :get do |f| %>

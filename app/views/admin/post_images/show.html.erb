@@ -3,7 +3,7 @@
     <div class="mx-auto col-xl-11">
 
       <div>
-        <h2>投稿詳細画面</h2>
+          <h2>投稿詳細画面</h2>
       </div>
 
       <div>
@@ -12,17 +12,17 @@
 
       <div>
         <h3><%= @post_image.title %></h3>
-        <span><%= link_to @post_image.user.name, public_user_path(@post_image.user.id) %></span>
+        <span><%= link_to @post_image.user.name, public_user_path(@post_image.user.id), target: :_blank %></span>
         <span>♥<%= @post_image.bookmarks.count %></span>
         <span><%= @post_image.created_at.strftime('%Y/%m/%d') %></span>
         <div>
           <span><%= @post_image.body %></span>
         </div>
         <div>
-          <span><%= render_with_hashtags(@post_image.hashbody) %></span>
+          <span><%= render_with_hashtags(@post_image.hashbody, true) %></span>
         </div>
 
-        <span><%= link_to "編集", edit_admin_post_image_path(@post_image.id) %></span>
+        <span><%= link_to "投稿削除", admin_post_image_path, method: :delete, data: { confirm: '本当に削除しますか?'} %></span>
 
       </div>
 

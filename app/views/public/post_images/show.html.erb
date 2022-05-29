@@ -3,7 +3,9 @@
     <div>
 
       <div>
-        <%= render 'public/users/profile', user: @user %>
+        <% if user_signed_in? %>
+          <%= render 'public/users/profile', user: @user %>
+        <% end %>
       </div>
 
       <div>
@@ -14,7 +16,7 @@
         <div>
           <div><%= image_tag @post_image.get_image(500,500) %></div>
           <span><%= link_to @post_image.user.name, public_user_path(@post_image.user.id) %></span>
-          <% if signed_in? %>
+          <% if user_signed_in? %>
             <span>
                   <% if @post_image.bookmarked_by?(current_user) %>
                     <%= link_to "ブックマークを外す", public_bookmark_path(@post_image), method: :delete %>
@@ -51,7 +53,7 @@
             <% end %>
         </div>
         <div>
-          <% if signed_in? %>
+          <% if user_signed_in? %>
             <%= form_with model: [@post_image, @comment], url: public_post_image_comments_path(@post_image), method: :post do |f| %>
               <%= f.text_area :comment, placeholder: "コメントをここに", size: "60×50", style: "height:80px;" %>
               <%= f.submit "送信する" %>
