@@ -8,22 +8,22 @@
 
       <%= form_with model: @user, url: admin_user_path(@user.id) do |f| %>
 
-      <span>会員ID</span>
-      <span><%= @user.id %></span><br>
+        <span>会員ID</span>
+        <span><%= @user.id %></span><br>
 
-      <span><label for="name">ユーザーネーム</label></span>
-      <%= f.text.field :name, id:"name"%><br>
+        <span><label for="name">ユーザーネーム</label></span>
+        <%= f.text_field :name, id:"name"%><br>
 
-      <span><label for="email">メールアドレス</label></span>
-      <%= f.text.field :email, id:"email"%><br>
+        <span><label for="email">メールアドレス</label></span>
+        <%= f.text_field :email, id:"email"%><br>
 
-      <span>会員ステータス</span>
-      <%= f.label :is_deleted, '有効', value: FALSE, for:"status" %>
-      <%= f.radio_button :is_deleted, '1', id:"status" %>
-      <%= f.label :is_deleted, '退会', value: TRUE, for:"status_f" %>
-      <%= f.radio_button :is_deleted, '0', id:"status_f" %><br>
+        <span>会員ステータス</span>
+        <%= f.label :is_deleted, '有効', value: FALSE, for:"status_f" %>
+        <%= f.radio_button :is_deleted, 'false', id:"status_f" %>
+        <%= f.label :is_deleted, '退会', value: TRUE, for:"status" %>
+        <%= f.radio_button :is_deleted, 'true', id:"status" %><br>
 
-      <span><%= f.submit '変更を保存' %></span>
+        <span><%= f.submit '変更を保存' %></span>
 
       <% end %>
 
