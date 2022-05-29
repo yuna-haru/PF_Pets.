@@ -12,7 +12,10 @@ class Admin::PostImagesController < ApplicationController
     post_image = PostImage.find(params[:id])
     post_image.destroy
     redirect_to admin_post_images_path
+  end
 
+  def index_user
+    @post_image = PostImage.where(user_id:params[:id])
   end
 
   private
