@@ -50,7 +50,7 @@ class Public::SessionsController < Devise::SessionsController
   end
 
   def after_sign_in_path_for(resource)
-    public_path
+    public_user_path(@user.id)
   end
   def after_sign_out_path_for(resource)
    public_path

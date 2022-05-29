@@ -2,11 +2,15 @@
   <div>
     <div>
 
+      <% if signed_in? %>
+
       <div>
         <h4>プロフィール</h4>
       </div>
 
       <div>
+
+
 
         <div><%= image_tag user.get_profile_image(100,100) %></div>
         <div><%= user.name %></div>
@@ -30,7 +34,11 @@
           <%= f.text_field :keyword %>
           <%= f.submit "検索" %>
         <% end %>
+
+
       </div>
+
+      <% end %>
 
     </div>
   </div>

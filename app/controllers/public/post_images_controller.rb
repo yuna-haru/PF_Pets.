@@ -41,7 +41,7 @@ class Public::PostImagesController < ApplicationController
 
   def destroy
     @post_image = PostImage.find(params[:id])
-    @post_image.destroy(post_image_params)
+    @post_image.destroy
     redirect_to public_post_images_path
   end
 

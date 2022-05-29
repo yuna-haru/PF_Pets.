@@ -12,7 +12,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    public_path
+    public_user_path(@user.id)
   end
 
   # GET /resource/sign_up
