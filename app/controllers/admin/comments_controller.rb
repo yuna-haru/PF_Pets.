@@ -1,6 +1,6 @@
 class Admin::CommentsController < ApplicationController
   def index
-    @comment = Comment.all
+    @comment = Comment.page(params[:page])
   end
 
   def show
@@ -8,7 +8,9 @@ class Admin::CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_to admin_comments_path
   end
 
 

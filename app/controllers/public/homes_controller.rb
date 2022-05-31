@@ -4,6 +4,7 @@ class Public::HomesController < ApplicationController
   end
 
 
+
   def post_image_params
     params.require(:post_image).permit(:image)
   end

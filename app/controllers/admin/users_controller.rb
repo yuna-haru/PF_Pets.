@@ -1,10 +1,16 @@
 class Admin::UsersController < ApplicationController
   def index
-    @user = User.all
+    @user = User.page(params[:page])
+  end
+
+  def post_images
+   @user =  User.find(params[:id])
+   @post_images = @user.post_images
   end
 
   def show
     @user = User.find(params[:id])
+
   end
 
   def edit

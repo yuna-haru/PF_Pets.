@@ -1,7 +1,7 @@
 class Admin::PostImagesController < ApplicationController
 
   def index
-    @post_images = PostImage.all
+    @post_images = PostImage.page(params[:page])
   end
 
   def show
@@ -14,9 +14,6 @@ class Admin::PostImagesController < ApplicationController
     redirect_to admin_post_images_path
   end
 
-  def index_user
-    @post_image = PostImage.where(user_id:params[:id])
-  end
 
   private
 

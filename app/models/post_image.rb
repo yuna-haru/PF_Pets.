@@ -1,5 +1,8 @@
 class PostImage < ApplicationRecord
   has_one_attached :image
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :image, presence: true
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy

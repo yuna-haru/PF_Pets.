@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
 
   devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
+    get 'public/sign_out', to: 'public/sessions#destroy'
   end
+
+  devise_scope :admin do
+    get 'admin/sign_out', to: 'admin/sessions#destroy'
+  end
+
+
 
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -30,12 +37,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [:index, :show, :edit, :update]
-    resources :post_images, only: [:index, :show, :destroy] do
+    resources :users, only: [:index, :show, :edit, :update] do
       member do
-        get :index_user
+        get :post_images
       end
     end
+    resources :post_images, only: [:index, :show, :destroy]
     resources :comments, only: [:index, :show, :destroy]
   end
 

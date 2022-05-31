@@ -3,7 +3,7 @@
     <div class="mx-auto col-xl-11">
 
       <div>
-        <h2>ユーザー一覧</h2>
+        <h2>投稿一覧</h2>
       </div>
 
       <div>
@@ -27,6 +27,7 @@
                                   <% end %></p></td>
             </tr>
             <% end %>
+            <%= paginate @post_images %>
           </tbody>
         </table>
       </div>

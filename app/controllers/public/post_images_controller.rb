@@ -1,6 +1,6 @@
 class Public::PostImagesController < ApplicationController
   before_action :current_user
-  before_action :login_check, only: [:new, :edit, :update, :destroy]
+  before_action :login_check, only: [:new, :show, :edit, :update, :destroy]
 
 
   def new
@@ -18,14 +18,14 @@ class Public::PostImagesController < ApplicationController
   end
 
   def index
-    @post_image = PostImage.all
+    @post_image = PostImage.page(params[:page])
     @user = current_user
   end
 
   def show
-    @user = current_user
+
     @post_image = PostImage.find(params[:id])
-    @user = current_user
+    @user = @post_image.user
     @comment = Comment.new
   end
 

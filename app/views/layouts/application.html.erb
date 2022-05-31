@@ -1,60 +1,74 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pets</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Pets.</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "マイページ", public_user_path(current_user.id) %>
-      </li>
-      <li>
-        <%= link_to "投稿一覧", public_post_images_path %>
-      </li>
-      <li>
-        <%= link_to "ユーザー一覧", public_users_path %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
+    <header class="border-bottom">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <div>
+            <h3><%= link_to "Pets.", public_path, class: "text-muted" %></h3>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "マイページ", public_user_path(current_user.id), class: "nav-link-w mr-2 text-muted" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "投稿一覧", public_post_images_path, class: "nav-link-w mr-2 text-muted" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ユーザー一覧", public_users_path, class: "nav-link-w mr-2 text-muted" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link-w text-muted" %>
+                </li>
 
-    <% elsif admin_signed_in? %>
-      <li>
-        <%= link_to "投稿一覧", admin_post_images_path %>
-      </li>
-      <li>
-        <%= link_to "ユーザー一覧", admin_users_path %>
-      </li>
-      <li>
-        <%= link_to "コメント一覧", admin_comments_path %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-      </li>
+              <% elsif admin_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "投稿一覧", admin_post_images_path, class: "nav-link-w mr-2 text-muted" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ユーザー一覧", admin_users_path, class: "nav-link-w mr-2 text-muted" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "コメント一覧", admin_comments_path, class: "nav-link-w mr-2 text-muted" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link-w text-muted" %>
+                </li>
 
-    <% else %>
-      <li>
-        <%= link_to "About", public_about_path %>
-      </li>
-      <li>
-        <%= link_to "投稿一覧", public_post_images_path %>
-      </li>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
-  </header>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "About", public_about_path, class: "nav-link-w mr-2 text-muted" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "投稿一覧", public_post_images_path, class: "nav-link-w mr-2 text-muted" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_user_registration_path, class: "nav-link-w mr-2 text-muted" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_user_session_path, class: "nav-link-w text-muted" %>
+                </li>
+              <% end %>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </header>
 
     <%= yield %>
   </body>

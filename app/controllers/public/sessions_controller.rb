@@ -2,7 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  before_action :customer_state, only: [:create]
+  before_action :user_state, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -19,26 +19,27 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
-   protected
-
-   def guest_sign_in
+  def guest_sign_in
     user = User.guest
     sign_in user
     redirect_to public_path, notice: 'ゲストユーザーとしてログインしました。'
-   end
+  end
+
+   protected
+
+
 
   def user_state
-  ## 【処理内容1】 入力されたemailからアカウントを1件取得
      @user = User.find_by(email: params[:user][:email])
-  ## アカウントを取得できなかった場合、このメソッドを終了する
+
      return if !@user
-  ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
+
      if @user.valid_password?(params[:user][:password])
-    ## 【処理内容3】
-     if @user.is_deleted
-      redirect_to new_user_registration_path
-     end
-   end
+
+      if @user.is_deleted
+       redirect_to new_user_registration_path
+      end
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -46,7 +47,7 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-  def customer_state
+  def user_state
   end
 
   def after_sign_in_path_for(resource)
