@@ -1,10 +1,11 @@
-<div>
-  <div>
-    <div>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12">
 
-      <did>
 
-        <div>
+      <div style="padding: 50px 0;">
+
+        <div class="text-center", style="padding:20px;">
           <h1>ようこそ、Pets. へ</h1>
           <p>動物が好きな方、ペットを自慢したい方<br>
              ペットのおススメグッズやフードの紹介<br>
@@ -13,34 +14,45 @@
         </div>
 
         <div>
-          <h4>新着記事</h1>
-        </div>
+          <div style="padding-bottom: 10px;">
+            <h4 class="text-center">新着記事</h1>
+          </div>
 
-        <div class="d-flex flex-nowrap">
-        <% @post_images.each do |post_image| %>
+          <div style="margin-top: 10px;">
+          <% @post_images.each do |post_image| %>
 
-        <div>
-          <span>
-            <%= link_to public_post_image_path(post_image.id) do %>
-              <%= image_tag post_image.get_image(100,100) %>
-            <% end %>
-          <span>
+            <div class="d-flex flex-row">
+              <div>
+                <span class="font-weight-bold">
+                  <%= link_to post_image.title, public_post_image_path(post_image.id), class: "text-muted" %>
+                </span><br>
+                <div>
+                  <%= link_to public_post_image_path(post_image.id) do %>
+                    <%= image_tag post_image.get_image(100,100) %>
+                  <% end %>
+                </div>
 
-          <span><%= link_to post_image.user.name, public_user_path(post_image.user.id) %></span>
+                <span class="small">
+                  <%= link_to post_image.user.name, public_user_path(post_image.user.id), class: "text-muted" %>
+                </span>
+              </div>
 
-          <span><%= link_to post_image.title, public_post_image_path(post_image.id) %></span>
-
-          <%= post_image.body.truncate(20) %>
-            <% if post_image.body.size >= 20 %>
-              <%= link_to public_post_image_path(post_image.id) do %>
-                <span>　続きを読む</span>
-              <% end %>
-            <% end %>
+              <div>
+                <p>
+                  <%= post_image.body.truncate(10) %>
+                  <% if post_image.body.size >= 10 %>
+                    <%= link_to public_post_image_path(post_image.id), class: "text-muted" do %><br>
+                      <span>続きを読む</span>
+                    <% end %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
 
           <% end %>
         </div>
 
-      </did>
+      </div>
 
     </div>
   </div>

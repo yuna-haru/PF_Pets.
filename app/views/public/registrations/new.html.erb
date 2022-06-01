@@ -1,52 +1,57 @@
 <div class="container">
   <div class="row">
-    <div class="mx-auto col-xl-11">
+    <div class="mx-auto col-xl-12">
 
-      <div>
-        <h2>新規会員登録</h2>
+      <div style="margin: 50px 0;">
+        <div style="margin-bottom: 20px;">
+        <h2 class="text-center">新規会員登録</h2>
       </div>
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "public/shared/error_messages", resource: resource %>
+      <div class="text-center">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
 
-      <div class="field">
-        <%= f.label :name, "ユーザーネーム"%>
-        <%= f.text_field :name %>
-      </div>
+        <div class="field", style="margin-bottom: 20px;">
+          <%= f.label :name, "ユーザーネーム", style: "margin-right: 105px;" %>
+          <%= f.text_field :name %>
+        </div>
 
-      <div class="field">
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
+        <div class="field", style="margin-bottom: 20px;">
+          <%= f.label :email, "メールアドレス", style: "margin-right: 105px;" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
 
-      <div class="field">
-        <%= f.label :password, "パスワード" %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <div class="field", style="margin-bottom: 20px;">
+          <%= f.label :password, "パスワード" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password", style: "margin-left: 50px;" %>
+        </div>
+
+        <div class="field", style="margin-bottom: 20px;">
+          <%= f.label :password_confirmation, "パスワード(確認用)", style: "margin-right: 88px;" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "新規登録", style: "margin-left: 350px;" %>
+        </div>
         <% end %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
 
-      <div class="field">
-        <%= f.label :password_confirmation, "パスワード(確認用)" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "新規登録" %>
-      </div>
-      <% end %>
-
-      <div>
+      <div style="margin: 20px 0;", class="text-center">
         <p>会員登録がお済の方は<span><%= link_to "こちら", new_user_session_path %></span>からログインしてください</p>
       </div>
 
       <%#= render "public/shared/links" %>
 
-      <div>
-        <%= link_to "ゲストログイン(閲覧用)", public_path %>
+      <div class="border-top text-center", style="margin: 20px 0;">
+        <%= link_to "ゲストログイン(閲覧用)", public_guest_sign_in_path, method: :post %>
       </div>
 
+
+      </div>
 
     </div>
   </div>
