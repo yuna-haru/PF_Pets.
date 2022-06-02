@@ -14,22 +14,33 @@
         </div>
 
         <div>
-          <div style="padding-bottom: 10px;">
+          <div style="padding-top: 10px;", class="border-bottom">
             <h4 class="text-center">新着記事</h1>
           </div>
 
-          <div style="margin-top: 10px;">
+          <div class="d-flex justify-content-center">
           <% @post_images.each do |post_image| %>
 
-            <div class="d-flex flex-row">
-              <div>
+            <div>
+
+              <div style="padding: 20px;">
                 <span class="font-weight-bold">
                   <%= link_to post_image.title, public_post_image_path(post_image.id), class: "text-muted" %>
                 </span><br>
+
                 <div>
                   <%= link_to public_post_image_path(post_image.id) do %>
                     <%= image_tag post_image.get_image(100,100) %>
                   <% end %>
+                </div>
+
+                <div>
+                    <%= post_image.body.truncate(10) %>
+                    <% if post_image.body.size >= 10 %>
+                      <%= link_to public_post_image_path(post_image.id), class: "text-muted" do %><br>
+                        <span>続きを読む</span>
+                      <% end %>
+                    <% end %>
                 </div>
 
                 <span class="small">
@@ -37,16 +48,7 @@
                 </span>
               </div>
 
-              <div>
-                <p>
-                  <%= post_image.body.truncate(10) %>
-                  <% if post_image.body.size >= 10 %>
-                    <%= link_to public_post_image_path(post_image.id), class: "text-muted" do %><br>
-                      <span>続きを読む</span>
-                    <% end %>
-                  <% end %>
-                </p>
-              </div>
+
             </div>
 
           <% end %>
