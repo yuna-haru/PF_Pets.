@@ -4,18 +4,16 @@
 
       <% if signed_in? %>
 
-      <div>
+      <div style="margin-bottom: 20px;" class="border-bottom">
         <h4>プロフィール</h4>
       </div>
 
       <div>
+        <div style="margin-bottom: 10px;"><%= image_tag user.get_profile_image(100,100) %></div>
+        <div class="border-bottom"><%= user.name %></div>
+        <div class="border-bottom" style="margin-top: 10px;"><%= user.introduction %></div>
 
-
-
-        <div><%= image_tag user.get_profile_image(100,100) %></div>
-        <div><%= user.name %></div>
-        <div><%= user.introduction %></div>
-        <div>
+        <div class="text-center" style="margin-top: 10px;">
           <% if user == current_user %>
             <%= link_to "プロフィール編集", edit_public_user_path(user.id) %>
           <% end %>
@@ -23,19 +21,21 @@
 
         <div>
           <% if user_signed_in? %>
-            <div>
+            <div class="text-center" style="margin-top: 10px;">
               <%= link_to "新規投稿", new_public_post_image_path %>
             </div>
-            <div>
+            <div class="text-center" style="margin-top: 10px;">
               <%= link_to "ブックマーク", public_bookmarks_path %>
             </div>
           <% end %>
         </div>
 
-        <%= form_with url: keyword_public_post_images_path, method: :get do |f| %>
-          <%= f.text_field :keyword %>
-          <%= f.submit "検索" %>
-        <% end %>
+        <div style="margin-top: 10px;" class="text-right">
+          <%= form_with url: keyword_public_post_images_path, method: :get do |f| %>
+            <%= f.text_field :keyword %>
+            <%= f.submit "検索" %>
+          <% end %>
+        </div>
 
 
       </div>
