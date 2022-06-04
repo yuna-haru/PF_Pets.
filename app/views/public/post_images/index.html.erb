@@ -1,35 +1,47 @@
 <div class="container">
-  <div class="row">
-    <div class="mx-auto col-xl-11">
+  <div class="row" style="margin: 50px 0;">
 
-      <div>
-        <%= render 'public/users/profile', user: @user %>
+    <div class="col-md-3">
+      <%= render 'public/users/profile', user: @user %>
+    </div>
+
+    <div class="col-md-8">
+
+      <div style="margin-bottom: 20px;" class="border-bottom">
+        <h4 class="text-center">投稿一覧</h4>
       </div>
 
-      <div>
-        <h4>投稿一覧</h4>
-      </div>
-
-      <div>
+      <div style="margin-top: 5px;">
         <% @post_image.each do |post_image| %>
 
-        <div>
-          <span>
+        <div style="margin-bottom: 20px;" class="d-flex justify-content-start border-bottom">
+          <div>
             <%= link_to public_post_image_path(post_image.id) do %>
               <%= image_tag post_image.get_image(100,100) %>
-            <% end %>
-          <span>
+            <% end %><br>
+            <span class="small">
+              <%= link_to post_image.user.name, public_user_path(post_image.user.id), class: "text-muted" %>
+            </span>
+          </div>
 
-          <span><%= link_to post_image.user.name, public_user_path(post_image.user.id) %></span>
-
-          <span><%= link_to post_image.title, public_post_image_path(post_image.id) %></span>
-
-          <%= post_image.body.truncate(20) %>
-            <% if post_image.body.size >= 20 %>
-              <%= link_to public_post_image_path(post_image.id) do %>
-                <span>　続きを読む</span>
+          <div style="margin-left: 50px;">
+            <div class="font-weight-bold">
+              <%= link_to post_image.title, public_post_image_path(post_image.id), class: "text-muted border-bottom" %>
+            </div>
+            <div style="margin-top: 10px;">
+              <%= post_image.body.truncate(15) %>
+              <% if post_image.body.size >= 15 %>
+                 <%= link_to public_post_image_path(post_image.id), class: "text-muted" do %><br>
+                    <span>　続きを読む</span>
+                  <% end %>
               <% end %>
-            <% end %>
+            </div>
+          </div>
+
+          <div class="text-center" style="margin-left: 20px;">
+            <%#= post_image.comments.count %>
+            <%#= post_image.bookmarks.count %>
+          </div>
 
         </div>
 
@@ -38,5 +50,6 @@
       </div>
 
     </div>
+
   </div>
 </div>
