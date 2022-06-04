@@ -14,36 +14,36 @@
       <div style="margin-top: 5px;">
         <% @post_image.each do |post_image| %>
 
-        <div style="margin-bottom: 20px;" class="d-flex justify-content-start border-bottom">
-          <div>
-            <%= link_to public_post_image_path(post_image.id) do %>
-              <%= image_tag post_image.get_image(100,100) %>
-            <% end %><br>
-            <span class="small">
-              <%= link_to post_image.user.name, public_user_path(post_image.user.id), class: "text-muted" %>
-            </span>
-          </div>
-
-          <div style="margin-left: 50px;">
-            <div class="font-weight-bold">
-              <%= link_to post_image.title, public_post_image_path(post_image.id), class: "text-muted border-bottom" %>
-            </div>
-            <div style="margin-top: 10px;">
-              <%= post_image.body.truncate(15) %>
-              <% if post_image.body.size >= 15 %>
-                 <%= link_to public_post_image_path(post_image.id), class: "text-muted" do %><br>
-                    <span>　続きを読む</span>
-                  <% end %>
+          <div style="margin-bottom: 20px;" class="d-flex justify-content-start border-bottom">
+            <div>
+              <%= link_to public_post_image_path(post_image.id) do %>
+                <%= image_tag post_image.get_image(100,100) %>
               <% end %>
+              <div class="small">
+                <%= link_to post_image.user.name, public_user_path(post_image.user.id), class: "text-muted" %>
+              </div>
             </div>
-          </div>
 
-          <div class="text-center" style="margin-left: 20px;">
-            <%#= post_image.comments.count %>
-            <%#= post_image.bookmarks.count %>
-          </div>
+            <div style="margin-left: 50px;">
+              <div class="font-weight-bold">
+                <%= link_to post_image.title, public_post_image_path(post_image.id), class: "text-muted border-bottom" %>
+              </div>
+              <div style="margin-top: 10px;">
+                <%= post_image.body.truncate(15) %>
+                <% if post_image.body.size >= 15 %>
+                   <%= link_to public_post_image_path(post_image.id), class: "text-muted" do %><br>
+                      <span>　続きを読む</span>
+                    <% end %>
+                <% end %>
+              </div>
+            </div>
 
-        </div>
+            <div class="text-center" style="margin-left: 20px;">
+              <%#= post_image.comments.count %>
+              <%#= post_image.bookmarks.count %>
+            </div>
+
+          </div>
 
         <% end %>
         <%= paginate @post_image %>

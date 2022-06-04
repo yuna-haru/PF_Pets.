@@ -1,43 +1,49 @@
-<div>
-  <div>
-    <div>
+<div class="container">
+  <div class="row" style="margin: 50px 0;">
 
-      <div>
-        <%= render 'public/users/profile', user: @user %>
+    <div class="col-md-3">
+      <%= render 'public/users/profile', user: @user %>
+    </div>
+
+    <div class="col-md-8">
+
+      <div style="margin-bottom: 20px;" class="border-bottom">
+        <h4 class="text-center">ブックマーク一覧</h4>
       </div>
 
-        <div>
-          <h3>ブックマーク一覧</h3>
-        </div>
-
+      <div>
         <% @bookmarks.each do |bookmark| %>
 
-        <div>
-          <span>
-            <%= link_to public_post_image_path(bookmark.post_image.id) do %>
-              <%= image_tag bookmark.post_image.get_image(100,100) %>
-            <% end %>
-          <span>
-
-          <span><%= link_to bookmark.post_image.title, public_post_image_path(bookmark.post_image.id) %></span>
-
-          <span>
-            <%= bookmark.post_image.body.truncate(20) %>
-              <% if bookmark.post_image.body.size >= 20 %>
-                <%= link_to public_post_image_path(bookmark.post_image.id) do %>
-                  <span>続きを読む</span>
-                <% end %>
+          <div style="margin-bottom: 20px;" class="d-flex justify-content-start border-bottom">
+            <div>
+              <%= link_to public_post_image_path(bookmark.post_image.id) do %>
+                <%= image_tag bookmark.post_image.get_image(100,100) %>
               <% end %>
-          </span>
+              <div>
+                <%= link_to bookmark.post_image.user.name, public_user_path(bookmark.post_image.user.id), class: "text-muted" %>
+              </div>
+            </div>
 
-          <span><%= link_to bookmark.post_image.user.name, public_user_path(bookmark.post_image.user.id) %></span>
+            <div style="margin-left: 50px;">
+              <div class="font-weight-bold">
+                <%= link_to bookmark.post_image.title, public_post_image_path(bookmark.post_image.id), class: "text-muted" %>
+              </div>
+              <div style="margin-top: 10px;">
+                <%= bookmark.post_image.body.truncate(20) %>
+                  <% if bookmark.post_image.body.size >= 20 %>
+                    <%= link_to public_post_image_path(bookmark.post_image.id), class: "text-muted" do %><br>
+                      <span>続きを読む</span>
+                    <% end %>
+                  <% end %>
+              </div>
+            </div>
+          </div>
 
-          <% end %>
-
-        </div>
-
-
+        <% end %>
+      </div>
 
     </div>
+
+
   </div>
 </div>
