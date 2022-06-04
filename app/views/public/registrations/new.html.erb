@@ -26,11 +26,11 @@
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> 文字以上)</em>
           <% end %>
-          <%= f.password_field :password, autocomplete: "new-password", style: "margin-left: 50px;" %>
+          <%= f.password_field :password, autocomplete: "new-password", style: "margin-left: 49px;" %>
         </div>
 
         <div class="field", style="margin-bottom: 20px;">
-          <%= f.label :password_confirmation, "パスワード(確認用)", style: "margin-right: 88px;" %>
+          <%= f.label :password_confirmation, "パスワード(確認用)", style: "margin-right: 85px;" %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
 
@@ -41,7 +41,7 @@
       </div>
 
       <div style="margin: 20px 0;", class="text-center">
-        <p>会員登録がお済の方は<span><%= link_to "こちら", new_user_session_path, class: "text-muted" %></span>からログインしてください</p>
+        <p>会員登録がお済の方は<span><%= link_to "こちら", new_user_session_path, class: "text-info" %></span>からログインしてください</p>
       </div>
 
       <%#= render "public/shared/links" %>

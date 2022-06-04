@@ -14,29 +14,32 @@
 
       <div style="margin-top: 5px;">
         <% @post_imaged.each do |post_image| %>
-          <div style="margin-bottom: 20px;" class="d-flex justify-content-start border-bottom">
-            <div style="margin-right: 20px;">
-              <%= link_to public_post_image_path(post_image.id) do %>
-                <%= image_tag post_image.get_image(100,100) %>
-              <% end %><br>
-              <div class="small">
-                <%= link_to post_image.user.name, public_user_path(post_image.user.id), class: "text-muted" %>
-              </div>
-            </div>
 
-            <div style="margin-left: 50px;">
-              <div class="font-weight-bold">
-                <%= link_to post_image.title, public_post_image_path(post_image.id), class: "text-muted" %>
+          <div class="border-bottom">
+            <div style="margin-left:50px;" class="d-flex justify-content-start">
+              <div style="margin-top: 20px; margin-bottom: 10px;">
+                <%= link_to public_post_image_path(post_image.id) do %>
+                  <%= image_tag post_image.get_image(100,100) %>
+                <% end %><br>
+                <div class="small">
+                  <%= link_to post_image.user.name, public_user_path(post_image.user.id), class: "text-muted" %>
+                </div>
               </div>
-              <%= post_image.body.truncate(15) %>
-                <% if post_image.body.size >= 15 %>
-                  <%= link_to public_post_image_path(post_image.id), class: "text-muted" do %>
-                    <span>続きを読む</span>
+
+              <div style="margin-left: 50px; margin-top: 20px;">
+                <div class="font-weight-bold">
+                  <%= link_to post_image.title, public_post_image_path(post_image.id), class: "text-muted" %>
+                </div>
+                <%= post_image.body.truncate(15) %>
+                  <% if post_image.body.size >= 15 %>
+                    <%= link_to public_post_image_path(post_image.id), class: "text-muted" do %>
+                      <span>続きを読む</span>
+                    <% end %>
                   <% end %>
-                <% end %>
+              </div>
             </div>
-
           </div>
+
         <% end %>
       </div>
 

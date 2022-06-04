@@ -5,23 +5,25 @@
       <% if signed_in? %>
 
       <div style="margin-bottom: 20px;" class="border-bottom">
-        <h4>プロフィール</h4>
+        <h4 class="text-center">プロフィール</h4>
       </div>
 
       <div>
-        <div style="margin-bottom: 10px;"><%= image_tag user.get_profile_image(100,100) %></div>
-        <div>
-          <span class="border-bottom small">ユーザーネーム</span>
-          <div style="margin-bottom: 10px;"><%= user.name %></div>
-        </div>
-        <div class="border-bottom">
-          <span class="border-bottom small">自己紹介</span>
-          <div style="margin-bottom: 10px;"><%= user.introduction %></div>
+        <div class="text-center">
+          <div style="margin-bottom: 10px;"><%= image_tag user.get_profile_image(100,100) %></div>
+          <div>
+            <span class="border-bottom small">ユーザーネーム</span>
+            <div style="margin-bottom: 10px;"><%= user.name %></div>
+          </div>
+          <div class="border-bottom">
+            <span class="border-bottom small">自己紹介</span>
+            <div style="margin-bottom: 10px;"><%= user.introduction %></div>
+          </div>
         </div>
 
 
         <% if user == current_user %>
-          <div class="text-center " style="margin-top: 10px;">
+          <div class="text-center" style="margin-top: 10px;">
             <%= link_to "プロフィール編集", edit_public_user_path(user.id), class: "text-success btn btn-outline-success" %>
           </div>
         <% end %>
@@ -33,7 +35,10 @@
               <%= link_to "新規投稿", new_public_post_image_path, class: "text-info btn btn-outline-info" %>
             </div>
             <div class="text-center" style="margin-top: 10px;">
-              <%= link_to "ブックマーク", public_bookmarks_path, class: "text-warning btn btn-outline-warning" %>
+              <%= link_to public_bookmarks_path, class: "text-warning btn btn-outline-warning" do %>
+                <i class="fas fa-bookmark"></i>
+                <span>ブックマーク</span>
+              <% end %>
             </div>
           <% end %>
         </div>

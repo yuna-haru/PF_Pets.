@@ -14,28 +14,31 @@
       <div style="margin-top: 5px;">
         <% @users.each do |user| %>
 
-          <div style="margin-bottom: 20px;" class="d-flex justify-content-start border-bottom">
-            <div>
-              <%= link_to public_user_path(user.id) do %>
-                <%= image_tag user.get_profile_image(100,100) %>
-              <% end %>
-              <div class="small">
-                <%= link_to user.name, public_user_path(user.id), class: "text-muted" %>
+          <div class="border-bottom">
+            <div style="margin-left:50px;" class="d-flex justify-content-start">
+              <div style="margin-top: 20px;margin-bottom: 10px;">
+                <%= link_to public_user_path(user.id) do %>
+                  <%= image_tag user.get_profile_image(100,100) %>
+                <% end %>
+                <div class="small">
+                  <%= link_to user.name, public_user_path(user.id), class: "text-muted" %>
+                </div>
               </div>
-            </div>
 
-            <div style="margin: 10px 0 0 50px;">
-              <% if user.introduction %>
-                  <%= user.introduction.truncate(20) %>
-                  <% if user.introduction.size >= 20 %>
-                    <%= link_to public_user_path(user.id), class: "text-muted" do %><br>
-                      <span>続きを読む</span>
+              <div style="margin-left: 50px; margin-top: 20px;">
+                <% if user.introduction %>
+                    <%= user.introduction.truncate(20) %>
+                    <% if user.introduction.size >= 20 %>
+                      <%= link_to public_user_path(user.id), class: "text-muted" do %><br>
+                        <span>続きを読む</span>
+                      <% end %>
                     <% end %>
-                  <% end %>
-              <% end %>
-            </div>
+                <% end %>
+              </div>
 
+            </div>
           </div>
+
         <% end %>
         <%= paginate @users %>
       </div>

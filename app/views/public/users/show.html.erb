@@ -12,16 +12,30 @@
 
         <div style="margin-top: 5px;">
           <% @post_images.each do |post_image| %>
-            <div style="margin-bottom: 20px;" class="border-bottom">
-              <span style="margin-right: 20px;">
-                <%= link_to public_post_image_path(post_image.id) do %>
-                  <%= image_tag post_image.get_image(100,100) %>
-                <% end %>
-              </span>
-              <span style="margin-right: 20px;"><%= link_to post_image.title, public_post_image_path(post_image.id), class: "text-muted" %></span>
-              <span style="margin-right: 20px;"><%= post_image.created_at.strftime('%Y/%m/%d') %></span>
-              <span><%= post_image.comments.count %></span>
-              <span><%= post_image.bookmarks.count %></span>
+            <div class="border-bottom">
+              <div style="margin-bottom: 20px; margin-left:50px;" class="d-flex justify-content-start">
+                <div>
+                  <%= link_to public_post_image_path(post_image.id) do %>
+                    <%= image_tag post_image.get_image(100,100) %>
+                  <% end %>
+                </div>
+                <div>
+                  <div class="font-weight-bold" style="margin-left: 40px;">
+                  <%= link_to post_image.title, public_post_image_path(post_image.id), class: "text-muted" %>
+                </div><br>
+                <div style="margin-left: 40px;">
+                  <span style="margin-right:10px;">
+                    <i class="fas fa-comment"></i><%= post_image.comments.count %>
+                  </span>
+                  <span>
+                    <i class="fas fa-bookmark"></i><%= post_image.bookmarks.count %>
+                  </span>
+                  <div class="text-center small", style="margin-right: 20px;">
+                    <%= post_image.created_at.strftime('%Y/%m/%d') %>
+                  </div>
+                </div>
+                </div>
+              </div>
             </div>
           <% end %>
         </div>
