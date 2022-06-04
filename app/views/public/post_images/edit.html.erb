@@ -1,32 +1,53 @@
 <div class="container">
-  <div class="row">
-    <div class="mx-auto col-xl-11">
-      <div>
-        <h4>投稿編集</h4>
+  <div class="row" style="margin: 50px 0;">
+    <div class="col-xl-12">
+
+      <div style="margin-bottom: 30px;" class="border-bottom">
+        <h4 class="text-center">投稿編集</h4>
       </div>
 
-      <div>
+      <div class="text-center">
+        <% if @post_image.errors.any? %>
+          <%= @post_image.errors.count %>件のエラーが発生しました
+          <ul>
+            <% @post_image.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+
+      <div class="d-flex justify-content-center">
         <%= form_with model: @post_image, url: public_post_image_path(@post_image.id), method: :patch do |f| %>
 
-          <label for="file"><span>画像</span></label>
-          <%= f.file_field :image, accept: "image/*", id:"file" %><br>
+          <label for="file", style="margin-bottom: 20px;">
+            <span, style: "margin-right: 50px;">画像</span>
+          </label>
+          <%= f.file_field :image, accept: "image/*", id:"file", style: "margin-left: 95px;"  %><br>
 
-          <label for="title"><span>タイトル</span></label>
-          <%= f.text_field :title, id:"title" %><br>
+          <label for="title", style="margin-bottom: 20px;"><span>タイトル</span></label>
+          <%= f.text_field :title, id:"title", style: "margin-left: 64px;"  %><br>
 
-          <label for="body"><span>本文</span></label>
-          <%= f.text_area :body, id:"body", size: "60×50", style: "height:300px;" %><br>
+          <label for="body", style="margin-bottom: 20px;"><span>本文</span></label>
+          <%= f.text_area :body, id:"body", size: "60×50", style: "height:300px; margin-left: 95px;" %><br>
 
-          <label for="tag"><span>ハッシュタグ</span></label>
-          <%= f.text_area :hashbody, id:"tag", size: "60×50", placeholder: "先頭に#をつけてください" %><br>
+          <label for="tag", style="margin-bottom: 20px;"><span>ハッシュタグ</span></label>
+          <%= f.text_area :hashbody, id:"tag", size: "60×50", placeholder: "先頭に#をつけてください", style: "margin-left: 30px;" %><br>
 
-          <%= f.submit '変更を保存' %>
-
+          <div class="text-center">
+            <span style="margin-right: 30px;">
+              <%= f.submit '変更を保存',  class: "btn btn-outline-success" %>
+            </span>
+            <span class="btn btn-outline-danger">
+              <% if @post_image.user == current_user %>
+                <%= link_to "削除", public_post_image_path(@post_image), method: :delete, data: { confirm: '本当に削除しますか?'}, class: "text-danger" %>
+              <% end %>
+            </span>
+          </div>
         <% end %>
 
-        <% if @post_image.user == current_user %>
-          <%= link_to "削除", public_post_image_path(@post_image), method: :delete, data: { confirm: '本当に削除しますか?'} %>
-        <% end %>
+
+
       </div>
 
     </div>

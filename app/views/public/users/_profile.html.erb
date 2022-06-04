@@ -35,7 +35,7 @@
         <div style="margin-top: 10px;" class="text-center">
           <%= form_with url: keyword_public_post_images_path, method: :get do |f| %>
             <%= f.text_field :keyword, size: "15×30" %>
-            <%= f.submit "検索" %>
+            <%= f.submit "検索", class: "btn btn-outline-primary" %>
           <% end %>
         </div>
 

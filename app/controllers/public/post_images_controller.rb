@@ -1,5 +1,5 @@
 class Public::PostImagesController < ApplicationController
-  before_action :current_user
+  before_action :current_user, only: [:edit, :update, :destroy]
   before_action :login_check, only: [:new, :show, :edit, :update, :destroy]
 
 
@@ -35,8 +35,11 @@ class Public::PostImagesController < ApplicationController
 
   def update
     @post_image = PostImage.find(params[:id])
-    @post_image.update(post_image_params)
+    if @post_image.update(post_image_params)
     redirect_to public_post_image_path(@post_image.id)
+    else
+      render :edit
+    end
   end
 
   def destroy

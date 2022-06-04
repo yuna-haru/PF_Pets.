@@ -35,13 +35,13 @@
         </div>
 
         <div class="actions text-center">
-          <%= f.submit "新規登録" %>
+          <%= f.submit "新規登録", class: "btn btn-outline-info" %>
         </div>
         <% end %>
       </div>
 
       <div style="margin: 20px 0;", class="text-center">
-        <p>会員登録がお済の方は<span><%= link_to "こちら", new_user_session_path %></span>からログインしてください</p>
+        <p>会員登録がお済の方は<span><%= link_to "こちら", new_user_session_path, class: "text-muted" %></span>からログインしてください</p>
       </div>
 
       <%#= render "public/shared/links" %>
