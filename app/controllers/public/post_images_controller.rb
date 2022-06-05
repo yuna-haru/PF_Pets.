@@ -72,7 +72,7 @@ class Public::PostImagesController < ApplicationController
   end
 
   def login_check
-    unless user_signed_in?
+    unless user_signed_in? || admin_signed_in?
       flash[:alert] = "ログインしてください"
       redirect_to public_post_images_path
     end

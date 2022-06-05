@@ -24,7 +24,7 @@
                                       <% end %></p></td>
               <td class="px-3"><p><%= post_image.body.truncate(20) %>
                                   <% if post_image.body.size >= 20 %>
-                                    <%= link_to public_post_image_path(post_image.id), class: "text-muted" do %>
+                                    <%= link_to admin_post_image_path(post_image.id), class: "text-muted" do %>
                                       <span>　続きを読む</span>
                                     <% end %>
                                   <% end %></p></td>
