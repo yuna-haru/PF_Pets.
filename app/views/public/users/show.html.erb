@@ -13,27 +13,27 @@
         <div style="margin-top: 5px;">
           <% @post_images.each do |post_image| %>
             <div class="border-bottom">
-              <div style="margin-bottom: 20px; margin-left:50px;" class="d-flex justify-content-start">
-                <div>
+              <div style="margin-left:50px;" class="d-flex justify-content-start">
+                <div style="margin-top: 20px;margin-bottom: 10px;">
                   <%= link_to public_post_image_path(post_image.id) do %>
                     <%= image_tag post_image.get_image(100,100) %>
                   <% end %>
                 </div>
-                <div>
-                  <div class="font-weight-bold" style="margin-left: 40px;">
-                  <%= link_to post_image.title, public_post_image_path(post_image.id), class: "text-muted" %>
-                </div><br>
-                <div style="margin-left: 40px;">
-                  <span style="margin-right:10px;">
-                    <i class="fas fa-comment"></i><%= post_image.comments.count %>
-                  </span>
-                  <span>
-                    <i class="fas fa-bookmark"></i><%= post_image.bookmarks.count %>
-                  </span>
-                  <div class="text-center small", style="margin-right: 20px;">
-                    <%= post_image.created_at.strftime('%Y/%m/%d') %>
+                <div class="d-flex justify-content-center" style="margin-left: 50px; margin-top: 50px;">
+                  <div class="font-weight-bold">
+                    <%= link_to post_image.title, public_post_image_path(post_image.id), class: "text-muted" %>
+                  </div><br>
+                  <div style="margin-left:50px;">
+                    <span style="margin-right:10px;">
+                      <i class="fas fa-comment"></i><%= post_image.comments.count %>
+                    </span>
+                    <span>
+                      <i class="fas fa-bookmark"></i><%= post_image.bookmarks.count %>
+                    </span>
+                    <div class="text-center small", style="margin-right: 20px;">
+                      <%= post_image.created_at.strftime('%Y/%m/%d') %>
+                    </div>
                   </div>
-                </div>
                 </div>
               </div>
             </div>
