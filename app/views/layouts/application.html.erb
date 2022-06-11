@@ -15,7 +15,9 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <div>
-            <h3><%= link_to "Pets.", public_path, class: "text-muted" %></h3>
+            <%= link_to public_path, class: "text-muted" do %>
+              <%= image_tag 'Pets._logo_s2.png', size: '100x44' %>
+            <% end %>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

@@ -4,22 +4,22 @@
 
 
 
-    <div class="col-md-6">
+    <div class="col-md-7">
       <div style="margin-bottom: 30px;" class="border-bottom">
         <h4 class="text-center">投稿詳細画面</h4>
       </div>
       <div class="text-center"><%= image_tag @post_image.get_image(400,400) %></div>
     </div>
 
-    <div class="col-md-6">
-      <div class="text-center">
+    <div class="col-md-5">
+      <div class="text-center" style="margin-left:10px;">
         <div class="border-bottom">
           <h4><%= @post_image.title %></h4>
         </div>
         <div style="margin-top: 50px;">
           <div class="border-bottom">
             <span style="margin-right: 20px;"><%= link_to @post_image.user.name, public_user_path(@post_image.user.id), target: :_blank, class: "text-muted" %></span>
-            <span style="margin-right: 20px;">♥<%= @post_image.bookmarks.count %></span>
+            <span style="margin-right: 20px;"><i class="fas fa-bookmark"></i><%= @post_image.bookmarks.count %></span>
             <span style="margin-bottom: 20px;"><%= @post_image.created_at.strftime('%Y/%m/%d') %></span>
           </div>
           <div style="margin: 30px 0;">

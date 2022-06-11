@@ -29,6 +29,10 @@ class Public::UsersController < ApplicationController
 
   def withdraw
     @user = current_user
+    if @user.email == "guest@example.com"
+      redirect_to public_user_path(@user.id)
+      return
+    end
     @user.update(is_deleted: true)
     reset_session
     redirect_to public_path

@@ -24,11 +24,11 @@
             <span style="margin-right: 20px;">
                   <% if @post_image.bookmarked_by?(current_user) %>
                     <%= link_to public_bookmark_path(@post_image), method: :delete, class: "text-muted" do %>
-                       <i class="fas fa-bookmark-slash"></i>
+                       <%= image_tag 'Pets._bookmark_slash.png', size: '12' %>
                     <% end %>
                    <% else %>
                     <%= link_to public_bookmarks_path(post_image_id: @post_image), method: :post, class: "text-muted" do %>
-                      <i class="fas fa-bookmark"></i>
+                      <%= image_tag 'Pets._bookmark.png', size: '12' %>
                     <% end %>
                   <% end %>
             </span>
