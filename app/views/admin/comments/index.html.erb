@@ -19,7 +19,7 @@
             <% @comment.each do |comment|%>
             <tr>
               <td class="px-3"><p><%= link_to admin_comment_path(comment.id), class: "text-muted" do %>
-                                    <%= comment.post_image.created_at.strftime('%Y/%m/%d') %>
+                                    <u><%= comment.post_image.created_at.strftime('%Y/%m/%d') %></u>
                                   <% end %></p></td>
               <td class="px-3"><p><%= link_to admin_post_image_path(comment.post_image.id), class: "text-muted" do %>
                                     <%= comment.post_image.title %>
