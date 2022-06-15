@@ -22,7 +22,7 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to public_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
    protected
@@ -51,7 +51,7 @@ class Public::SessionsController < Devise::SessionsController
     public_user_path(@user.id)
   end
   def after_sign_out_path_for(resource)
-   public_path
+    root_path
   end
 
 end

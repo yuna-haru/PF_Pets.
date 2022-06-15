@@ -35,7 +35,7 @@ class Public::UsersController < ApplicationController
     end
     @user.update(is_deleted: true)
     reset_session
-    redirect_to public_path
+    redirect_to root_path
   end
 
 

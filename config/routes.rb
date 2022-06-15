@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   }
 
   namespace :public do
-    get '/' => 'homes#top'
+    # get '/' => 'homes#top'
     get 'about' => 'homes#about', as:'about'
     patch 'users/withdraw' => 'users#withdraw'
     get 'users/confirm' => 'users#confirm'
@@ -45,6 +45,8 @@ Rails.application.routes.draw do
     resources :post_images, only: [:index, :show, :destroy]
     resources :comments, only: [:index, :show, :destroy]
   end
+
+  root to: 'public/homes#top'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
