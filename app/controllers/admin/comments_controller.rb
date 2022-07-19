@@ -1,4 +1,6 @@
 class Admin::CommentsController < ApplicationController
+  before_action :check_admin
+
   def index
     @comment = Comment.page(params[:page])
   end
@@ -19,4 +21,10 @@ class Admin::CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:comment)
   end
+
+  def check_admin
+    redirect_to root_path
+  end
+
+
 end

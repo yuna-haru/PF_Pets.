@@ -1,6 +1,7 @@
 class Public::PostImagesController < ApplicationController
   before_action :current_user, only: [:edit, :update, :destroy]
   before_action :login_check, only: [:new, :show, :edit, :update, :destroy]
+  before_action :correct_post,only: [:edit, :destroy]
 
 
   def new
@@ -76,6 +77,13 @@ class Public::PostImagesController < ApplicationController
       flash[:alert] = "ログインしてください"
       redirect_to public_post_images_path
     end
+  end
+
+  def correct_post
+        @post_image = PostImage.find(params[:id])
+      unless @post_image.user.id == current_user.id
+        redirect_to public_post_images_path
+      end
   end
 
 end
