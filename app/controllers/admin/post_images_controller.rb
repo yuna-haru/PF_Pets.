@@ -1,5 +1,5 @@
 class Admin::PostImagesController < ApplicationController
-  before_action :check_admin
+
 
   def index
     @post_images = PostImage.page(params[:page])
@@ -20,10 +20,6 @@ class Admin::PostImagesController < ApplicationController
 
   def post_image_params
     params.require(:post_image).permit(:title, :body, :image, :hashbody, hashtag_ids: [])
-  end
-
-  def check_admin
-    redirect_to root_path
   end
 
 end

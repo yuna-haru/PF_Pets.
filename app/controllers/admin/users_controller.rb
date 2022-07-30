@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :check_admin
+
 
   def index
     @user = User.page(params[:page])
@@ -31,7 +31,5 @@ class Admin::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :encrypted_password, :name, :introduction, :is_deleted)
   end
-  def check_admin
-    redirect_to root_path
-  end
+
 end

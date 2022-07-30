@@ -1,7 +1,7 @@
 class Public::PostImagesController < ApplicationController
   before_action :current_user, only: [:edit, :update, :destroy]
   before_action :login_check, only: [:new, :show, :edit, :update, :destroy]
-  before_action :correct_post,only: [:edit, :destroy]
+  before_action :correct_post,only: [:edit]
 
 
   def new
