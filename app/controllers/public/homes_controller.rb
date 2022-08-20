@@ -1,4 +1,5 @@
 class Public::HomesController < ApplicationController
+
   def top
     @post_images = PostImage.last(4)
   end
