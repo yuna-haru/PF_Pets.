@@ -1,38 +1,40 @@
 <div class="container">
   <div class="row">
-    <div class="col-xl-12 m-50px">
+    <div class="col-xl-12">
 
-      <div class="mb-30px">
-        <h4 class="text-center">コメント一覧</h4>
-      </div>
+      <div class="m-50px">
+        <div class="mb-30px">
+          <h4 class="text-center">コメント一覧</h4>
+        </div>
 
-      <div class="text-center">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col" class="text-nowrap font-weight-bold w-10"><h6>コメント日時</h6></th>
-              <th scope="col" class="text-nowrap font-weight-bold w-30"><h6>コメントした投稿</h6></th>
-              <th scope="col" class="text-nowrap font-weight-bold w-20"><h6>ユーザーネーム</h6></th>
-          </tr>
-          </thead>
-          <tbody>
-            <% @comment.each do |comment|%>
-            <tr>
-              <td class="px-3"><p><%= link_to admin_comment_path(comment.id), class: "text-muted text-decoration-underline" do %>
-                                    <%= comment.post_image.created_at.strftime('%Y/%m/%d') %>
-                                  <% end %></p></td>
-              <td class="px-3"><p><%= link_to admin_post_image_path(comment.post_image.id), class: "text-muted" do %>
-                                    <%= comment.post_image.title %>
-                                  <% end %></p></td>
-              <td class="px-3"><p><%= link_to admin_user_path(comment.post_image.user.id), class: "text-muted" do %>
-                                    <%= comment.user.name %>
-                                  <% end %></p></td>
-
+        <div class="text-center">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" class="text-nowrap font-weight-bold w-10"><h6>コメント日時</h6></th>
+                <th scope="col" class="text-nowrap font-weight-bold w-30"><h6>コメントした投稿</h6></th>
+                <th scope="col" class="text-nowrap font-weight-bold w-20"><h6>ユーザーネーム</h6></th>
             </tr>
-            <% end %>
-            <%= paginate @comment %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% @comment.each do |comment|%>
+              <tr>
+                <td class="px-3"><p><%= link_to admin_comment_path(comment.id), class: "text-muted text-decoration-underline" do %>
+                                      <%= comment.post_image.created_at.strftime('%Y/%m/%d') %>
+                                    <% end %></p></td>
+                <td class="px-3"><p><%= link_to admin_post_image_path(comment.post_image.id), class: "text-muted" do %>
+                                      <%= comment.post_image.title %>
+                                    <% end %></p></td>
+                <td class="px-3"><p><%= link_to admin_user_path(comment.post_image.user.id), class: "text-muted" do %>
+                                      <%= comment.user.name %>
+                                    <% end %></p></td>
+
+              </tr>
+              <% end %>
+              <%= paginate @comment %>
+            </tbody>
+          </table>
+        </div>
       </div>
 
 
