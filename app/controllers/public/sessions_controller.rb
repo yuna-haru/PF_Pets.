@@ -39,7 +39,7 @@ class Public::SessionsController < Devise::SessionsController
       if @user.is_deleted
        redirect_to new_user_registration_path
       end
-    end
+     end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
